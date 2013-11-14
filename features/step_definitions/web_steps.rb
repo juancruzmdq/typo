@@ -55,6 +55,22 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
+
+Given /^the following articles exist:$/ do |table|
+  table.hashes.each do |article|
+    o = Article.new
+    o.id = article["id"]
+    o.title = article["title"]
+    o.body = article["body"]
+    o.user_id = 1
+    o.state = "published"
+    o.save!
+  end
+
+end
+
+
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

@@ -116,6 +116,11 @@ class Admin::ContentController < Admin::BaseController
   def merge
     @article = Article.find(params[:id])
     @article_to_merge = Article.find(params[:merge_with])
+
+    @article.body = @article.body + @article_to_merge.body
+    @article.save()
+    @article_to_merge.delete()
+
     redirect_to :action => 'index'
   end
 
