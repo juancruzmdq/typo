@@ -4,3 +4,8 @@
   <%= render :partial => "form" %>
 
 <% end %>
+<%= form_tag( { :action => "merge", :id => @article.id } , :id => "article_merge_form") do %>
+
+  <%= render :partial => "form_merge" %>
+
+<% end %>

@@ -112,6 +112,12 @@ class Admin::ContentController < Admin::BaseController
     end
     render :text => nil
   end
+  
+  def merge
+    @article = Article.find(params[:id])
+    @article_to_merge = Article.find(params[:merge_with])
+    redirect_to :action => 'index'
+  end
 
   protected
 
@@ -240,4 +246,6 @@ class Admin::ContentController < Admin::BaseController
   def setup_resources
     @resources = Resource.by_created_at
   end
+  
+
 end
