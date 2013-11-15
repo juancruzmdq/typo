@@ -69,6 +69,17 @@ Given /^the following articles exist:$/ do |table|
 
 end
 
+Given /^the following comments exist:$/ do |table|
+  table.hashes.each do |comment|
+    o = Comment.new
+    o.body = comment["body"]
+    o.user_id = 1
+    o.author = "Test User"
+    o.article = Article.find(comment["article_id"])
+    o.save!
+  end
+
+end
 
 
 # Single-line step scoper

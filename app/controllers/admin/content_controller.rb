@@ -118,7 +118,10 @@ class Admin::ContentController < Admin::BaseController
       @article = Article.find(params[:id])
       @article_to_merge = Article.find(params[:merge_with])
 
-      @article.body = @article.body + @article_to_merge.body
+      @article.body = "#{@article.body} #{@article_to_merge.body}"
+      
+      @article.comments << @article_to_merge.comments
+      
       @article.save()
       @article_to_merge.delete()
 	end
