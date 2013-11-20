@@ -81,6 +81,16 @@ Given /^the following comments exist:$/ do |table|
 
 end
 
+Given /^the following categories exist:$/ do |table|
+  table.hashes.each do |categorie|
+    o = Category.new
+    o.name = categorie["name"]
+    o.description = categorie["description"]
+    o.save!
+  end
+
+end
+
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|

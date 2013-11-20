@@ -73,6 +73,14 @@ class Category < ActiveRecord::Base
     permalink
   end
 
+
+  def self.get_or_build_category id = nil
+    return Category.find(id) if id
+    category = Category.new.tap do |art|
+        art.old_permalink = art.permalink_url unless art.permalink.nil? or art.permalink.empty?
+    end
+  end
+
   protected
 
   before_save :set_permalink
